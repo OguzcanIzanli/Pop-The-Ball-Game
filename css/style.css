@@ -1,0 +1,153 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #FFEDD8;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    background-color: #891652;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    position: absolute;
+    border-radius: 50%;
+    cursor: crosshair;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #891652;
+    border: 3px solid #240A34;
+    visibility: hidden;
+}
+
+.startBtn {
+    font-size: 4rem;
+    color: #EABE6C;
+    font-weight: 700;
+    background-color: #891652;
+    width: 220px;
+    height: 140px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid #240A34;
+    scale: 1;
+    opacity: 1;
+}
+
+.startBtn:hover {
+    scale: 0.95;
+    cursor: pointer;
+}
+
+.startBtn:active {
+    scale: 0.9;
+    opacity: 0.9;
+}
+
+.diffHeader {
+    text-align: center;
+    padding: 5px;
+    color: #240A34;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+
+
+.required {
+    color: #891652;
+    display: none;
+}
+
+.diffList {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.difficultyBtn {
+    background-color: #891652;
+    color: #EABE6C;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 2px 4px;
+    border: 4px solid #240A34
+}
+
+.difficultyBtn:hover {
+    scale: 0.9;
+    cursor: pointer;
+}
+
+.selected {
+    color: #891652;
+    background-color: #EABE6C;
+}
+
+.healthBarContainer {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width:  90%;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    justify-content: space-around;
+}
+
+.healthBarContainer p {
+    width: 10%;
+    font-size: 1.2rem;
+    color: #240A34;
+    font-weight: 700;
+}
+
+.healthBorder {
+    border: 4px solid #240A34;
+    width: 80%;
+    height: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.healthBar {
+    background-color: #891652;
+    width: 100%;
+    height: 14px;
+    border-radius: 4px;
+    transition: all 2s;
+    z-index: -1;
+}
+
+
+/* .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+} */
+
+/* .minutes::after {
+    content: " :";
+} */
+
+/* .cronometer {
+    font-size: 2rem;
+    color: #240A34;
+} */
+
