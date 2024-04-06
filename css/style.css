@@ -14,22 +14,24 @@ body {
     align-items: center;
 }
 
+h2 {
+    text-align: center;
+}
+
 .circle {
     height: 50px;
     width: 50px;
     background-color: #891652;
     bottom: 50%;
     left: 50%;
-    transform: translate(-50% -50%);
     position: absolute;
     border-radius: 50%;
     cursor: crosshair;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     color: #891652;
     border: 3px solid #240A34;
-    visibility: hidden;
 }
 
 .startBtn {
@@ -79,7 +81,7 @@ body {
     justify-content: space-around;
 }
 
-.difficultyBtn {
+.diffBtn {
     background-color: #891652;
     color: #EABE6C;
     font-weight: 700;
@@ -88,7 +90,7 @@ body {
     border: 4px solid #240A34
 }
 
-.difficultyBtn:hover {
+.diffBtn:hover {
     scale: 0.9;
     cursor: pointer;
 }
@@ -100,12 +102,12 @@ body {
 
 .healthBarContainer {
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 5%;
     width:  90%;
-    display: flex;
+    display: none;
     align-items: center;
-    margin: 5px;
+
     justify-content: space-around;
 }
 
@@ -130,24 +132,91 @@ body {
     width: 100%;
     height: 14px;
     border-radius: 4px;
-    transition: all 2s;
+    transition: all 0.5s;
     z-index: -1;
 }
 
+.scoreScreen {
+    display: none;
+    text-align: center;
+    background-color: #240A34;
+    color: #EABE6C;
+    border: 3px solid #891652;
+    border-radius: 10px;
+    padding: 5px 30px;
+    font-family: sans-serif;
+}
 
-/* .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-} */
-
-/* .minutes::after {
-    content: " :";
-} */
-
-/* .cronometer {
+.scoreScreen h1 {
     font-size: 2rem;
-    color: #240A34;
-} */
+    margin-bottom: 20px;
+}
 
+.scoreBtnContainer {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.scoreBtnContainer button:hover{
+    scale: 0.9;
+}
+
+.scoreTableBtn {
+    cursor: pointer;
+    background-color: #891652;
+    padding: 3px 6px;
+    border-radius: 10px;
+    scale: 1;
+    transition: all 0.5s;
+}
+
+.scoreTableBtn:hover {
+    scale: 0.95;
+}
+
+.again {
+    cursor: pointer;
+    background-color: #891652;
+    padding: 3px 6px;
+    border-radius: 10px;
+    scale: 1;
+    transition: all 0.5s;
+}
+
+.again:hover {
+    scale: 0.95;
+}
+
+.resetScores {
+    cursor: pointer;
+    background-color: #891652;
+    padding: 3px 6px;
+    border-radius: 10px;
+    scale: 1;
+    transition: all 0.5s;
+    color: #EABE6C;
+    margin-bottom: 7px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.resetScores:hover {
+    scale: 0.95;
+}
+
+.scoreTable {
+    display: none;
+    right: 5%;
+    top: 50%;
+    background-color: #EABE6C;
+    color: #240A34;
+    margin-top: 10px;
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+.display {
+    display: block;
+}

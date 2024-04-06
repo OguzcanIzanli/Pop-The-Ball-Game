@@ -7,29 +7,44 @@
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
+        <!-- Ball Health  -->
         <div class="healthBarContainer">
             <p>Ball Health :</p>
             <div class="healthBorder">
                 <div class="healthBar"></div>
             </div>
         </div>
+
+        <!-- Ball -->
+        <div class="circle">100</div>
+
+        <!-- Start Screen  -->
         <div class="startContainer">
-            <!-- <div class="cronometer">
-                <span class="minutes">0</span>
-                <span class="seconds">0</span>
-            </div> -->
             <div class="startBtn">Start</div>
+            <h2>Click The Ball!</h2>
             <p class="diffHeader">
                 Select Difficulty <span class="required">(Required!)</span>
             </p>
             <ul class="diffList">
-                <li id="easy" class="difficultyBtn">Easy</li>
-                <li id="normal" class="difficultyBtn">Normal</li>
-                <li id="hard" class="difficultyBtn">Hard</li>
+                <li id="easy" class="diffBtn">Easy</li>
+                <li id="normal" class="diffBtn">Normal</li>
+                <li id="hard" class="diffBtn">Hard</li>
             </ul>
         </div>
 
-        <div class="circle">10</div>
+        <!-- Score Screen  -->
+        <div class="scoreScreen">
+            <h1>Congratulations!</h1>
+            <h2>Your Score: <span class="scoreTime"></span></h2>
+            <div class="scoreBtnContainer">
+                <div class="again">Try Again</div>
+                <div class="scoreTableBtn">Old Scores</div>
+            </div>
+            <div class="resetScores">Reset Scores</div>
+            <ol class="scoreTable"></ol>
+        </div>
+
+        <!-- script  -->
         <script src="./js/popTheBall.js"></script>
     </body>
 </html>

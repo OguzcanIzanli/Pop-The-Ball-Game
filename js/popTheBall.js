@@ -1,75 +1,148 @@
+const startContainer = document.querySelector(".startContainer"); // Start Screen
 const startBtn = document.querySelector(".startBtn"); // Start button
+
 const circle = document.querySelector(".circle"); // The Ball
-const difficultyBtn = document.querySelectorAll(".difficultyBtn"); // Difficulty selection buttons
-const startContainer = document.querySelector(".startContainer");
-const healthBar = document.querySelector(".healthBar");
-const required = document.querySelector(".required");
 
-let difficulty;
+const diffBtn = document.querySelectorAll(".diffBtn"); // Difficulty selection buttons
+const required = document.querySelector(".required"); // Difficulty required message
 
-// Variable Ball Movement
-circle.addEventListener("mousemove", () => {
-    circle.style.bottom = `${window.innerHeight * Math.random() - 25}px`;
-    circle.style.left = `${window.innerWidth * Math.random() - 25}px`;
-    circle.style.transition = `all ${
-        diffProps(difficulty) + Math.random() * 2
-    }s`;
-});
+const healthBarContainer = document.querySelector(".healthBarContainer"); // Ball health container
+const healthBar = document.querySelector(".healthBar"); // Health Bar
 
-// Ball health actions
-circle.addEventListener("click", () => {
-    circle.innerHTML -= 1;
-    healthBar.style.width = `${Number(circle.innerHTML) * 10}%`;
-    if (circle.innerHTML == 0) {
-        setTimeout(() => {
-            circle.innerHTML = 9;
-            alert("Congratulations");
-        }, 2000);
-    }
-});
+const scoreScreen = document.querySelector(".scoreScreen"); // Score screen
+const scoreTime = document.querySelector(".scoreTime"); // Score result
+const scoreTable = document.querySelector(".scoreTable"); // Listed score times
+const scoreTableBtn = document.querySelector(".scoreTableBtn"); // Score table opening button
+const resetScores = document.querySelector(".resetScores"); // Score reset button
+const tryAgain = document.querySelector(".again"); // Try again button
+
+let timer;
+let difficulty; // Selected difficulty
+let countSec = Number(0); // Seconds counter
+let countMin = Number(0); // Minutes counter
 
 // Difficulty selection
-difficultyBtn.forEach((list) => list.addEventListener("click", addClassList));
+diffBtn.forEach((list) => list.addEventListener("click", addClassList)); // Difficulty buttons listener
 
 function addClassList() {
-    difficultyBtn.forEach((list) => list.classList.remove("selected"));
+    // Add class selected difficulty and removed old selection
+    diffBtn.forEach((list) => list.classList.remove("selected"));
     this.classList.add("selected");
     return (difficulty = this.id);
 }
 
 function diffProps(difficulty) {
     return difficulty == "easy"
-        ? (difficulty = 0.75) // easy
+        ? (difficulty = 1.75) // Easy
         : difficulty == "normal"
-        ? (difficulty = 0.5) // normal
-        : (difficulty = 0.25); // hard
+        ? (difficulty = 1.5) // Normal
+        : (difficulty = 1.25); // Hard
 }
 
-// Game start
-startBtn.addEventListener("click", () => {
-    if (difficulty != undefined) {
-        startContainer.style.visibility = "hidden";
-        circle.style.visibility = "visible";
+// Game start actions
+startBtn.addEventListener("click", gameStart);
+
+function gameStart() {
+    if (difficulty) {
+        // Some visibility changes
+        console.log("game started");
+        startContainer.style.display = "none"; // Start and difficulty selection screen
+        circle.style.display = "flex"; // Ball
+        healthBarContainer.style.display = "flex"; // Health bar of the ball
+        scoreScreen.style.display = "none"; // Score svreen
+        circle.style.bottom = "50%";
+        circle.style.left = "50%";
+
+        scoreTable.innerHTML = "";
+        countSec = Number(0); // Seconds counter
+        countMin = Number(0); // Minutes counter
+        time();
+
+        circle.innerHTML = 100; // Ball Health
+        healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health bar ratio
     } else {
-        required.style.display = "inline";
+        required.style.display = "inline"; // when there is no difficulty selection
+    }
+}
+
+// Timer
+function time() {
+    // Seconds and minutes counter
+    if (!timer) {
+        timer = setInterval(() => {
+            countSec += 1;
+            console.log(countSec);
+            if (countSec == 60) {
+                countSec = 0;
+                countMin += 1;
+            }
+        }, 1000);
+    }
+    return `${countMin < 10 ? "0" + countMin : countMin}:${
+        countSec < 10 ? "0" + countSec : countSec
+    }`;
+}
+
+// Ball Movement with mouse hover
+circle.addEventListener("mousemove", () => {
+    circle.style.bottom = `${window.innerHeight * Math.random() - 25}px`; // Random ball movement in Y direnction
+    circle.style.left = `${window.innerWidth * Math.random() - 25}px`; // Random ball movement in X direnction
+    circle.style.transition = `all ${diffProps(difficulty) + Math.random()}s`; // Random ball speed according to diffuculty selection
+});
+
+// Ball health and game ending actions
+circle.addEventListener("click", () => {
+    circle.innerHTML -= 10; // Ball health decreases per tab with mouse
+    healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health bar ratio
+
+    // When ball explodes these codes run
+    if (circle.innerHTML == 0) {
+        let result = time(); // Total time
+        scoreTime.innerHTML = result;
+        clearInterval(timer); // Clear timer
+        timer = null; // Reset timer
+
+        // Some visibility changes
+        healthBarContainer.style.display = "none"; // Health bar
+        circle.style.display = "none"; // Ball
+        scoreScreen.style.display = "block"; // Score screen
+        resetScores.style.display = "block";
+        scoreTable.style.padding = "10px 30px";
+
+        // Check Local Storage
+        if (localStorage.getItem("Score Time")) {
+            scoreResults = JSON.parse(localStorage.getItem("Score Time"));
+        } else {
+            scoreResults = new Array();
+        }
+
+        // Push the data to localstorage
+        scoreResults.push(result);
+        localStorage.setItem("Score Time", JSON.stringify(scoreResults));
+
+        // Listed the scores
+        JSON.parse(localStorage.getItem("Score Time")).forEach((score) => {
+            let liDOM = document.createElement("li"); // Create List Element
+            liDOM.innerHTML = score; // Add Value from Local Storage to List Element
+            scoreTable.append(liDOM); // Add List to the ul
+        });
     }
 });
 
-// const seconds = document.querySelector(".seconds");
-// const minutes = document.querySelector(".minutes");
+// Score Table
+scoreTableBtn.addEventListener("click", () => {
+    scoreTable.classList.toggle("display");
+});
 
-// counterSeconds = 0;
-// counterMinutes = 0;
+// Reset Scores
+resetScores.addEventListener("click", () => {
+    localStorage.clear("Score Time");
+    scoreTable.innerHTML = "";
+    resetScores.style.display = "none";
+    scoreTable.style.padding = "0";
+});
 
-// start.addEventListener("click", () => {
-//     setInterval(() => {
-//         counterSeconds += 1;
-//         seconds.innerHTML = counterSeconds;
-//         minutes.innerHTML = counterMinutes;
-
-//         if (seconds.innerHTML == 60) {
-//             counterSeconds = 0;
-//             counterMinutes += 1;
-//         }
-//     }, 1000);
-// });
+// Try Again
+tryAgain.addEventListener("click", () => {
+    gameStart();
+});
