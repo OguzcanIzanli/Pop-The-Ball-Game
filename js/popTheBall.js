@@ -1,31 +1,31 @@
 const startContainer = document.querySelector(".startContainer"); // Start Screen
-const startBtn = document.querySelector(".startBtn"); // Start button
+const startBtn = document.querySelector(".startBtn"); // Start Button
 
 const circle = document.querySelector(".circle"); // The Ball
 
-const diffBtn = document.querySelectorAll(".diffBtn"); // Difficulty selection buttons
-const required = document.querySelector(".required"); // Difficulty required message
+const diffBtn = document.querySelectorAll(".diffBtn"); // Difficulty Selection Buttons
+const required = document.querySelector(".required"); // Difficulty Required Message
 
-const healthBarContainer = document.querySelector(".healthBarContainer"); // Ball health container
+const healthBarContainer = document.querySelector(".healthBarContainer"); // Ball Health Container
 const healthBar = document.querySelector(".healthBar"); // Health Bar
 
-const scoreScreen = document.querySelector(".scoreScreen"); // Score screen
-const scoreTime = document.querySelector(".scoreTime"); // Score result
-const scoreTable = document.querySelector(".scoreTable"); // Listed score times
-const scoreTableBtn = document.querySelector(".scoreTableBtn"); // Score table opening button
-const resetScores = document.querySelector(".resetScores"); // Score reset button
-const tryAgain = document.querySelector(".again"); // Try again button
+const scoreScreen = document.querySelector(".scoreScreen"); // Score Screen
+const scoreTime = document.querySelector(".scoreTime"); // Score Result
+const scoreTable = document.querySelector(".scoreTable"); // Listed Score Times
+const scoreTableBtn = document.querySelector(".scoreTableBtn"); // Old Scores Opening Button
+const resetScores = document.querySelector(".resetScores"); // Scores Reset Button
+const tryAgain = document.querySelector(".again"); // Try Again Button
 
 let timer;
-let difficulty; // Selected difficulty
-let countSec = Number(0); // Seconds counter
-let countMin = Number(0); // Minutes counter
+let difficulty; // Selected Difficulty
+let countSec = Number(0); // Seconds Counter
+let countMin = Number(0); // Minutes Counter
 
-// Difficulty selection
-diffBtn.forEach((list) => list.addEventListener("click", addClassList)); // Difficulty buttons listener
+// DIFFICULTY SELECTION
+diffBtn.forEach((list) => list.addEventListener("click", addClassList)); // Difficulty Buttons Listener
 
 function addClassList() {
-    // Add class selected difficulty and removed old selection
+    // Add Class Selected Difficulty And Removed Old Selection
     diffBtn.forEach((list) => list.classList.remove("selected"));
     this.classList.add("selected");
     return (difficulty = this.id);
@@ -39,35 +39,35 @@ function diffProps(difficulty) {
         : (difficulty = 1.25); // Hard
 }
 
-// Game start actions
+// GAME STARTING ACTIONS
 startBtn.addEventListener("click", gameStart);
 
 function gameStart() {
     if (difficulty) {
-        // Some visibility changes
-        console.log("game started");
-        startContainer.style.display = "none"; // Start and difficulty selection screen
-        circle.style.display = "flex"; // Ball
-        healthBarContainer.style.display = "flex"; // Health bar of the ball
-        scoreScreen.style.display = "none"; // Score svreen
-        circle.style.bottom = "50%";
-        circle.style.left = "50%";
+        // Some Visibility Changes
+        startContainer.style.display = "none"; // Start And Difficulty Selection Screen (Hidden)
+        circle.style.display = "flex"; // The Ball (Visible)
+        healthBarContainer.style.display = "flex"; // Health Bar Of The Ball (Visible)
+        scoreScreen.style.display = "none"; // Score Screen (Hidden)
+
+        circle.style.bottom = "50%"; // Ball Default Position
+        circle.style.left = "50%"; // Ball Default Position
 
         scoreTable.innerHTML = "";
-        countSec = Number(0); // Seconds counter
-        countMin = Number(0); // Minutes counter
+        countSec = Number(0); // Seconds Counter
+        countMin = Number(0); // Minutes Counter
         time();
 
-        circle.innerHTML = 100; // Ball Health
-        healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health bar ratio
+        circle.innerHTML = 100; // Full Ball Health
+        healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health Bar Ratio
     } else {
-        required.style.display = "inline"; // when there is no difficulty selection
+        required.style.display = "inline"; // When There Is No Difficulty Selection
     }
 }
 
-// Timer
+// TIMER
 function time() {
-    // Seconds and minutes counter
+    // Seconds And Minutes Counter
     if (!timer) {
         timer = setInterval(() => {
             countSec += 1;
@@ -83,30 +83,31 @@ function time() {
     }`;
 }
 
-// Ball Movement with mouse hover
+// BALL MOVEMENT WITH MOUSE HOVER
 circle.addEventListener("mousemove", () => {
-    circle.style.bottom = `${window.innerHeight * Math.random() - 25}px`; // Random ball movement in Y direnction
-    circle.style.left = `${window.innerWidth * Math.random() - 25}px`; // Random ball movement in X direnction
-    circle.style.transition = `all ${diffProps(difficulty) + Math.random()}s`; // Random ball speed according to diffuculty selection
+    circle.style.bottom = `${window.innerHeight * Math.random() - 25}px`; // Random Ball Movement In Y Direnction
+    circle.style.left = `${window.innerWidth * Math.random() - 25}px`; // Random Ball Movement In X Direnction
+    circle.style.transition = `all ${diffProps(difficulty) + Math.random()}s`; // Random Ball Speed According To Diffuculty Selection
 });
 
-// Ball health and game ending actions
+// BALL HEALTH AND GAME ENDING ACTIONS
 circle.addEventListener("click", () => {
-    circle.innerHTML -= 10; // Ball health decreases per tab with mouse
-    healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health bar ratio
+    circle.innerHTML -= 10; // Ball Health Decreases Per Tab With Mouse
+    healthBar.style.width = `${Number(circle.innerHTML)}%`; // Health Bar Ratio
 
-    // When ball explodes these codes run
+    // When The Ball Runs Out Of Health, These Codes Run
     if (circle.innerHTML == 0) {
-        let result = time(); // Total time
+        let result = time(); // Total Time
         scoreTime.innerHTML = result;
-        clearInterval(timer); // Clear timer
-        timer = null; // Reset timer
+        clearInterval(timer); // Clear Timer
+        timer = null; // Reset Timer
 
-        // Some visibility changes
-        healthBarContainer.style.display = "none"; // Health bar
-        circle.style.display = "none"; // Ball
-        scoreScreen.style.display = "block"; // Score screen
-        resetScores.style.display = "block";
+        // Some Visibility Changes
+        healthBarContainer.style.display = "none"; // Health Bar (Hidden)
+        circle.style.display = "none"; // Ball (Hidden)
+        scoreScreen.style.display = "block"; // Score Screen (Visible)
+        resetScores.style.display = "block"; // Reset Button (Visible)
+
         scoreTable.style.padding = "10px 30px";
 
         // Check Local Storage
@@ -116,33 +117,33 @@ circle.addEventListener("click", () => {
             scoreResults = new Array();
         }
 
-        // Push the data to localstorage
+        // Push The Scores To Localstorage
         scoreResults.push(result);
         localStorage.setItem("Score Time", JSON.stringify(scoreResults));
 
-        // Listed the scores
+        // Listed The Scores
         JSON.parse(localStorage.getItem("Score Time")).forEach((score) => {
             let liDOM = document.createElement("li"); // Create List Element
-            liDOM.innerHTML = score; // Add Value from Local Storage to List Element
-            scoreTable.append(liDOM); // Add List to the ul
+            liDOM.innerHTML = score; // Add Value From Local Storage To List Element
+            scoreTable.append(liDOM); // Add List To The ul
         });
     }
 });
 
-// Score Table
+// OLD SCORES LIST BUTTON
 scoreTableBtn.addEventListener("click", () => {
     scoreTable.classList.toggle("display");
 });
 
-// Reset Scores
+// RESET SCORES BUTTON
 resetScores.addEventListener("click", () => {
-    localStorage.clear("Score Time");
-    scoreTable.innerHTML = "";
-    resetScores.style.display = "none";
+    localStorage.clear("Score Time"); // Clear Localstorage
+    scoreTable.innerHTML = ""; // Clear Old Scores List Array
+    resetScores.style.display = "none"; // Reset Button (Hidden)
     scoreTable.style.padding = "0";
 });
 
-// Try Again
+// TRY AGAIN BUTTON
 tryAgain.addEventListener("click", () => {
-    gameStart();
+    gameStart(); // The Game Starts Again
 });
