@@ -1,226 +1,226 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    overflow: hidden;
-    background-color: #FFEDD8;
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffedd8;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* The Ball */
 .circle {
-    height: 50px;
-    width: 50px;
-    background-color: #891652;
-    bottom: 50%;
-    left: 50%;
-    position: absolute;
-    border-radius: 50%;
-    cursor: crosshair;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    color: #891652;
-    border: 3px solid #240A34;
+  height: 8%;
+  aspect-ratio: 1/1;
+  background-color: #891652;
+  bottom: 50%;
+  left: 50%;
+  position: absolute;
+  border-radius: 50%;
+  cursor: crosshair;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #891652;
+  border: 0.3vw solid #240a34;
+  font-size: 0.1rem;
 }
 
 /* Start Screen */
 .startBtn {
-    font-size: 4rem;
-    color: #EABE6C;
-    font-weight: 700;
-    background-color: #891652;
-    width: 220px;
-    height: 140px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 6px solid #240A34;
-    scale: 1;
-    opacity: 1;
+  font-size: 4rem;
+  color: #eabe6c;
+  font-weight: 700;
+  background-color: #891652;
+  width: 220px;
+  height: 140px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid #240a34;
+  scale: 1;
+  opacity: 1;
+  transition: all 0.2s;
 }
 
 .startBtn:hover {
-    scale: 0.95;
-    cursor: pointer;
+  scale: 0.95;
+  cursor: pointer;
 }
 
 .startBtn:active {
-    scale: 0.9;
-    opacity: 0.9;
+  scale: 0.9;
+  opacity: 0.9;
 }
 
 .diffHeader {
-    text-align: center;
-    padding: 5px;
-    color: #240A34;
-    font-size: 0.9rem;
-    font-weight: 700;
-    font-family: sans-serif;
+  text-align: center;
+  padding: 5px;
+  color: #240a34;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: sans-serif;
 }
 
 .required {
-    color: #891652;
-    display: none;
+  color: #891652;
+  display: none;
 }
 
 .diffList {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
 }
 
 .diffBtn {
-    background-color: #891652;
-    color: #EABE6C;
-    font-weight: 700;
-    border-radius: 5px;
-    padding: 2px 4px;
-    border: 4px solid #240A34
+  background-color: #891652;
+  color: #eabe6c;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 2px 4px;
+  border: 4px solid #240a34;
+  transition: all 0.2s;
 }
 
 .diffBtn:hover {
-    scale: 0.9;
-    cursor: pointer;
+  scale: 0.9;
+  cursor: pointer;
 }
 
 .selected {
-    color: #891652;
-    background-color: #EABE6C;
+  color: #891652;
+  background-color: #eabe6c;
 }
 
 /* Health Bar */
 .healthBarContainer {
-    position: absolute;
-    top: 10px;
-    left: 5%;
-    width:  90%;
-    display: none;
-    align-items: center;
+  position: absolute;
+  top: 3vh;
+  left: 5%;
+  width: 90%;
+  display: none;
+  align-items: center;
 
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 .healthBarContainer p {
-    width: 10%;
-    font-size: 1.2rem;
-    color: #240A34;
-    font-weight: 700;
+  font-size: 2vw;
+  color: #240a34;
+  font-weight: 700;
 }
 
 .healthBorder {
-    border: 4px solid #240A34;
-    width: 80%;
-    height: 20px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
+  border: 0.4vw solid #240a34;
+  width: 80%;
+  height: 3vh;
+  border-radius: 3vh;
+  display: flex;
+  align-items: center;
 }
 
 .healthBar {
-    background-color: #891652;
-    width: 100%;
-    height: 14px;
-    border-radius: 4px;
-    transition: all 0.5s;
-    z-index: -1;
+  background-color: #891652;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  z-index: -1;
 }
 
 /* Score Screen */
 .scoreScreen {
-    display: none;
-    text-align: center;
-    background-color: #240A34;
-    color: #EABE6C;
-    border: 3px solid #891652;
-    border-radius: 10px;
-    padding: 5px 30px;
-    font-family: sans-serif;
+  display: none;
+  text-align: center;
+  background-color: #240a34;
+  color: #eabe6c;
+  border: 3px solid #891652;
+  border-radius: 10px;
+  padding: 5px 30px;
+  font-family: sans-serif;
 }
 
 .scoreScreen h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .scoreBtnContainer {
-    margin: 10px;
-    display: flex;
-    justify-content: space-around;
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
 }
 
-.scoreBtnContainer button:hover{
-    scale: 0.9;
+.scoreBtnContainer button:hover {
+  scale: 0.9;
 }
 
 .scoreTableBtn {
-    cursor: pointer;
-    background-color: #891652;
-    padding: 3px 6px;
-    border-radius: 10px;
-    scale: 1;
-    transition: all 0.5s;
+  cursor: pointer;
+  background-color: #891652;
+  padding: 3px 6px;
+  border-radius: 10px;
+  scale: 1;
+  transition: all 0.5s;
 }
 
 .scoreTableBtn:hover {
-    scale: 0.95;
+  scale: 0.95;
 }
 
 .again {
-    cursor: pointer;
-    background-color: #891652;
-    padding: 3px 6px;
-    border-radius: 10px;
-    scale: 1;
-    transition: all 0.5s;
+  cursor: pointer;
+  background-color: #891652;
+  padding: 3px 6px;
+  border-radius: 10px;
+  scale: 1;
+  transition: all 0.5s;
 }
 
 .again:hover {
-    scale: 0.95;
+  scale: 0.95;
 }
 
 .resetScores {
-    cursor: pointer;
-    background-color: #891652;
-    padding: 3px 6px;
-    border-radius: 10px;
-    scale: 1;
-    transition: all 0.5s;
-    color: #EABE6C;
-    margin-bottom: 7px;
-    width: 80%;
-    margin: auto;
-    margin-bottom: 5px;
+  cursor: pointer;
+  background-color: #891652;
+  padding: 3px 6px;
+  border-radius: 10px;
+  scale: 1;
+  transition: all 0.5s;
+  color: #eabe6c;
+  margin-bottom: 7px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 .resetScores:hover {
-    scale: 0.95;
+  scale: 0.95;
 }
 
 .scoreTable {
-    display: none;
-    right: 5%;
-    top: 50%;
-    background-color: #EABE6C;
-    color: #240A34;
-    margin-top: 10px;
-    padding: 10px 30px;
-    border-radius: 20px;
+  display: none;
+  right: 5%;
+  top: 50%;
+  background-color: #eabe6c;
+  color: #240a34;
+  margin-top: 10px;
+  padding: 10px 30px;
+  border-radius: 20px;
 }
 
 .display {
-    display: block;
+  display: block;
 }
