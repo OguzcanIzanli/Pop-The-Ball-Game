@@ -19,6 +19,6 @@ Pop The Ball Game is a simple web-based game created using basic HTML, CSS, and 
 
 ## Game Link:
 
-You can access the game [here](https://oguzcanizanli.github.io/Pop-The-Ball-Game/).
+You can access the game [here](https://poptheball.netlify.app/).
 
 ![Page Preview](./images/gif.gif)
